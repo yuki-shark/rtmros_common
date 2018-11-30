@@ -2,9 +2,9 @@
 /*!
  * @file PointCloudROSBridgeComp.cpp
  * @brief Standalone component
- * @date $Date$ 
+ * @date $Date$
  *
- * $Id$ 
+ * $Id$
  */
 #include <rtm/Manager.h>
 #include <iostream>
@@ -17,7 +17,7 @@ void MyModuleInit(RTC::Manager* manager)
   RTC::RtcBase* comp;
 
   // Create a component
-  comp = manager->createComponent("PointCloudROSBridge");
+  comp = manager->createComponent(std::string("PointCloudROSBridge?instance_name="+ros::this_node::getName().substr(ros::this_node::getNamespace().length())).c_str());
 
 
   // Example
@@ -34,14 +34,14 @@ void MyModuleInit(RTC::Manager* manager)
 
   // getting port profiles
 //  std::cout << "Number of Ports: ";
-//  std::cout << portlist->length() << std::endl << std::endl; 
+//  std::cout << portlist->length() << std::endl << std::endl;
 //  for (CORBA::ULong i(0), n(portlist->length()); i < n; ++i)
 //  {
 //    Port_ptr port;
 //    port = (*portlist)[i];
 //    std::cout << "Port" << i << " (name): ";
 //    std::cout << port->get_port_profile()->name << std::endl;
-//    
+//
 //    RTC::PortInterfaceProfileList iflist;
 //    iflist = port->get_port_profile()->interfaces;
 //    std::cout << "---interfaces---" << std::endl;
@@ -88,4 +88,3 @@ int main (int argc, char** argv)
 
   return 0;
 }
-

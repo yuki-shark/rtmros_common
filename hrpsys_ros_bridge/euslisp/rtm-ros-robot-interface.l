@@ -329,7 +329,8 @@
         (debug nil))
   (when (boundp param-class)
     (let* ((param-slots-list ;; get slots list for param-class
-            (remove-if #'(lambda (x) (string= "plist" x))
+            ;; (remove-if #'(lambda (x) (string= "plist" x))
+            (remove-if #'(lambda (x) (or (string= "plist" x) (string= "connection-header" x)))
                        (mapcar #'(lambda (x) (string-left-trim "::_" (string-left-trim "ros" (format nil "~A" x))))
                                (concatenate cons (send (eval param-class) :slots)))))
            (param-name
@@ -2657,5 +2658,3 @@
               (elt rpos 0) (elt rpos 1) (elt rpos 2)
               (elt ndr 0) (elt ndr 1) (elt ndr 2) ang ;; openhrp3 axis angle orientation representation
               )))
-
-
